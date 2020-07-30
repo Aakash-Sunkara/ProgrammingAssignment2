@@ -1,3 +1,4 @@
+## A brief about the function
 ## set and get functions perform the same task 
 ## setinv and getinv are similar in function as of setmean and getmean
 ## Proper way of testing is to create an object first and use it in function
