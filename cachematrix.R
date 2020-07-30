@@ -9,19 +9,23 @@
 ## amatrix$getinv()
 ## x$get and x$getinv can't be used. Why???
 
+library(matlib)
 makeCacheMatrix <- function(x = matrix()) {
-  m <- NULL
-  set <- function(y) {
-    x <<- y
-    m <<- NULL
-  }
-  get <- function() x
-  setinv <- function(mat) m <<- mat
-  getinv <- function() m
-  list(set = set, get = get,
-       setinv = setinv, getinv = getinv)
+  if(ncol(x)==nrow(x) && det(x)!=0){
+    m <- NULL
+    set <- function(y) {
+      x <<- y
+      m <<- NULL
+    }
+    get <- function() x
+    setinv <- function(mat) m <<- mat
+    getinv <- function() m
+    list(set = set, get = get,
+         setinv = setinv, getinv = getinv)
+    }
+}else{
+  return(message("This matrix is not invertible"))
 }
-
 cacheSolve <- function(x, ...) {
   m <- x$getinv()
   if(!is.null(m)){
